@@ -1,0 +1,55 @@
+@charset "UTF-8";
+@mixin full-width($support-type:$z-full-width-support-type, $min-width:$z-full-width-min-width) {
+        /* 在限宽的容器中全屏效果 */
+    @if $support-type==margin {
+        margin-left: calc(-50vw + 50%);
+        margin-right: calc(-50vw + 50%);
+        // margin-left: calc(-100vw / 2 + #{$min-width} / 2);
+        // margin-right: calc(-100vw / 2 + #{$min-width} / 2);
+    }@else {
+        width: 100vw;
+        position: relative;
+        left: 50%; 
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+    }
+    // 定宽时不要用 translate
+    // @if $support-type==translate {
+    //     width: 100vw;
+    //     transform: translateX(calc((#{$min-width} - 100vw)/2));
+    // }
+        @at-root body {
+     overflow-x: hidden;
+ }
+
+    @if $min-width !=null {
+        @media (max-width: $min-width) {
+            @at-root body {
+                overflow-x: auto;
+            }
+            width: 100%;
+            position: relative;
+            left: 0;
+            right: 0;
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }@else{
+       @at-root body{
+        // @include before(在限宽的容器中实现全屏效果《宽度》要设置)
+        }
+    /* 宽度未设置 响应式吗*/
+    }
+
+}
+// 在限宽的容器中实现全屏效果
+// // scss
+// .full-width {
+//   @include full-width();
+// }
+// //css
+// .full-width {
+//   margin-left: calc(-50vw + 50%);
+//   margin-right: calc(-50vw + 50%);
+// }

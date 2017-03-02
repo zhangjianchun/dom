@@ -1,0 +1,44 @@
+@charset "UTF-8";
+@mixin supports() {
+    section {
+        float: left;
+    }
+    @supports (display: -webkit-flex) or (display: -moz-flex) or (display: flex) {
+        section {
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: flex;
+            float: none;
+        }
+    }
+}
+
+// @mixin supports() {
+//     section {
+//         float: left;
+//     }
+//     @supports (display: -webkit-flex) or (display: -moz-flex) or (display: flex) {
+//         section {
+//             display: -webkit-flex;
+//             display: -moz-flex;
+//             display: flex;
+//             float: none;
+//         }
+//     }
+// }
+
+// @mixin include($include){
+//     @each $i in $include{
+//     @include($include)
+//     }
+// }
+// 高度等于宽度
+@mixin heightRelativeToWidth($percentage: 100%, $pos: after) { 
+    &:#{$pos} {
+        content: "";
+        display: inline-block;
+        height: 0;       
+        padding-bottom: $percentage;
+        @content;
+    }
+ }

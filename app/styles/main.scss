@@ -1,0 +1,19 @@
+@charset "UTF-8";
+@import "style/bootstrap_variables";
+// /* bootstrap to*/
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// /* bootstrap of*/
+
+@import "style/z_sass/z_minxins";
+
+@import "style/z_index";
+@import "style/z_header";
+@import "style/z_footer";
+@import "style/z_main";
+@import "style/z_home";
+@import "style/z_about";
+@import "style/z_contact";
+body{
+	background-color: #f00;
+}

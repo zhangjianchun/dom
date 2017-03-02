@@ -1,0 +1,25 @@
+@charset "UTF-8";
+@mixin select-range-last($start, $end) { 
+  &:nth-last-child(n+#{$start}):nth-last-child(-n+#{$end}){
+    @content;
+  }
+ }
+
+
+// $start  
+// 开始值
+
+// $end    
+// 结束值
+
+// //SCSS
+// li {
+//  @include select-range(3,5){
+//    color: red;
+//  }
+// }
+// //Output CSS  从下(底)至上(顶)第3个=>至<=第5个
+// li:nth-last-child(n+3):nth-last-child(-n+5) {
+//   color: red;
+// }
+// 

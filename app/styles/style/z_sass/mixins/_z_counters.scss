@@ -1,0 +1,42 @@
+@charset "UTF-8";
+@mixin counters($counters:$z-counters-to, $start:$z-counters-start, $increasing:$z-counters-increasing, $section:$z-counters-section) {
+    $id: unique-id();
+    @at-root #{$counters} {
+        counter-reset: $id #{$start - 1};
+    }
+    /* 计数器<排行榜> */
+    @content;
+    counter-increment: $id $increasing;
+    &:before {
+        @if($section!=null) {
+            content: counter(#{$id}) "#{$section}";
+        }
+        @else {
+             content: counter(#{$id});
+        }
+    }
+}
+
+//计数器<排行榜>
+// 需要开始计数的地方重置计数器
+// counters默认body
+// 计数器 类名
+// counter 
+// 开始
+// start 1
+// 递增
+// increasing 1++
+// 内容
+// section null
+// //scss
+// @include counters;
+// // css
+// .counters {
+//   counter-reset: ue1fnx213 0;
+// }
+// .counter {
+//   counter-increment: ue1fnx213 1;
+// }
+// .counter:before {
+//   content: counter(ue1fnx213) "";
+// }

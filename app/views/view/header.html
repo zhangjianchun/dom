@@ -1,0 +1,39 @@
+<nav class="navbar navbar-default " role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" ui-sref="/">Project name</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li ><a ui-sref="/home">home00</a></li>
+                <li><a ui-sref="/about">About</a></li>
+                <li><a ui-sref="/contact">Contact</a></li>
+                <li class="active"><a ui-sref="/main">main</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a ui-sref="/about">Action</a></li>
+                        <li><a ui-sref="/contact">Another action</a></li>
+                        <li><a ui-sref="/">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Nav header</li>
+                        <li><a ui-sref="/contact">Separated link</a></li>
+                        <li><a ui-sref="/">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a ui-sref="/">Link</a></li>
+                <li><a ui-sref="/">Link</a></li>
+                <li><a ui-sref="/">Link</a></li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</nav>

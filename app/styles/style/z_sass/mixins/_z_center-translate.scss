@@ -1,0 +1,80 @@
+@charset "UTF-8";
+@mixin center-translate($class:null, $positiontype: relative, $direction: both, $left-x:50, $top-y:50) {
+    @if($class==null) {
+        @if ($positiontype==a or $positiontype==absolute) {
+            $positiontype: absolute;
+        }
+        @else if ($positiontype==f or $positiontype==fixed) {
+            $positiontype: fixed;
+        }
+        @else {
+            /* relative垂直居中父元素要给高*/
+            /*display: inline-block;*/
+            $positiontype: $positiontype;
+        }
+        @if $direction==both {
+            /* 2d不定宽高水平or垂直居中 */
+            position: $positiontype;
+            top: $top-y * 1%;
+            left: $left-x * 1%;
+            transform: translate($left-x*-1%, $top-y*-1%);
+        }
+        @else if ($direction==horizontal or $direction==lr or $direction==h) {
+            /* 不定宽水平居中 */
+            position: $positiontype;
+            left: $left-x * 1%;
+            transform: translateX($left-x*-1%);
+        }
+        @else if ($direction==vertical or $direction==tb or $direction==v) {
+            /* 不定高垂直居中 */
+            position: $positiontype;
+            top: $top-y * 1%;
+            transform: translateY($top-y*-1%);
+        }
+    }@else{
+        #{$class}{
+            @if ($positiontype==a or $positiontype==absolute) {
+            $positiontype: absolute;
+        }
+        @else if ($positiontype==f or $positiontype==fixed) {
+            $positiontype: fixed;
+        }
+        @else {
+            /* relative垂直居中父元素要给高*/
+            /*display: inline-block;*/
+            $positiontype: $positiontype;
+        }
+        @if $direction==both {
+            /* 2d不定宽高水平or垂直居中 */
+            position: $positiontype;
+            top: $top-y * 1%;
+            left: $left-x * 1%;
+            transform: translate($left-x*-1%, $top-y*-1%);
+        }
+        @else if ($direction==horizontal or $direction==lr or $direction==h) {
+            /* 不定宽水平居中 */
+            position: $positiontype;
+            left: $left-x * 1%;
+            transform: translateX($left-x*-1%);
+        }
+        @else if ($direction==vertical or $direction==tb or $direction==v) {
+            /* 不定高垂直居中 */
+            position: $positiontype;
+            top: $top-y * 1%;
+            transform: translateY($top-y*-1%);
+        } 
+        }
+    }
+}
+
+// //SCSS
+// .center {
+//     @include center-translate;
+// }
+// //CSS
+// .center {
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate3d(-50%, -50%, 0);
+// }

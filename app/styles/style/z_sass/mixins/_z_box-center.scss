@@ -1,0 +1,23 @@
+@charset "UTF-8";
+@mixin box-center($justify: center, $align: center) {
+	@content;
+	  /* 弹性盒子元素垂直and水平居中 */
+    display: flex;
+    @if($align !=false) {
+        align-items: $align;
+    }
+    @if($justify !=false) {
+        justify-content: $justify;
+    }
+}
+
+//  //SCSS
+// .justify-center {
+//     @include box-center;
+// }
+// //CSS
+// .justify-cnter {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }

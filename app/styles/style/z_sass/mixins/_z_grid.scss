@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+$prefix:".";
+$map:(xs:all, sm:768px, md:992px, lg:1200px);
+@mixin grid($grid-rowumns:2) {
+
+    $list: null;
+    @each $k,
+    $v in $map {
+        @if (type-of($v)!=number) {
+            @for $i from 1 through $grid-rowumns {
+                $list: append($list, "#{$prefix}row-#{$k}-#{$i}", "comma");
+                #{$prefix}row-xs-#{$i}>#{$prefix}col-n {
+                    width: percentage((1/$i));
+                }
+                #{$prefix}row-#{$k}-#{$i}>#{$prefix}col-n {
+                    float: left;
+                }
+            }
+        }
+        @else {
+            @media (min-width: $v) {
+                @for $i from 1 through $grid-rowumns {
+                    $list: append($list, "#{$prefix}row-#{$k}-#{$i}", "comma");
+                    #{$prefix}row-#{$k}-#{$i}>#{$prefix}col-n {
+                        width: percentage((1/$i));
+                    }
+                    #{$prefix}row-#{$k}-#{$i}>#{$prefix}col-n {
+                        float: left;
+                    }
+                }
+            }
+        }
+    }
+    #{$prefix}col-n {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+    }
+    #{$list} {
+        @include clearfix
+    }
+}
+
+@include grid(12);

@@ -1,0 +1,20 @@
+@charset "UTF-8";
+@mixin nth-child-odd-even($odd:odd) { 
+  @if($odd != odd){$odd:even}
+  &:nth-child(#{$odd}){
+     @content;
+  }
+ }
+ 
+// //单双 奇偶 选择器
+//  //scss
+// li{
+//   @include nth-child-odd-even(0){
+//     color:#F00;
+//   }
+// }
+// //css
+// li:nth-child(even) {
+//   color: #F00;
+// }
+// // 

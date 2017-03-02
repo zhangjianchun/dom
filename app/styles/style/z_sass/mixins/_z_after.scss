@@ -1,0 +1,42 @@
+@charset "UTF-8";
+@mixin after($a:$z-after) {
+    &:after {
+        content: "#{$a}";
+        @content;
+    }
+}
+// 后面插入内容
+// // scss
+// li {
+//     @include after(a0);
+//     &:after {
+//         color: #f00;  
+//     }
+// }
+// // css
+// li:after {
+//   content: "a0";
+// }
+// li:after {
+//   color: #f00;
+// }
+@mixin burger-parts() { 
+    &,
+    &::before,
+    &::after {
+        @content;
+    }
+ }
+
+ //SCSS
+.burger {
+ @include burger-parts {
+   background-color: red;
+ }
+}
+// //Output CSS
+// .burger,
+// .burger::before,
+// .burger::after {
+//  background-color: red;
+// }

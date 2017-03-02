@@ -1,0 +1,93 @@
+@charset "UTF-8";
+@mixin border-polygon($num, $color: #f6f6f6, $radius: 32px) {
+    $radius:px($radius);
+    $PI: 3.141592653589793;
+    @if($num <=3) {
+        $num: 3;
+    }
+    position: relative;
+    height: 2.5*$radius;
+    width: 2.5*$radius;
+    div {
+        $halfWidth: tan($PI / $num) * $radius + 1;
+        /* + 1.5 to account for anti-aliasing */
+        border-top: #{$radius} solid $color;
+        border-left: #{$halfWidth} solid transparent;
+        border-right: #{$halfWidth} solid transparent;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform-origin: 50% 100%;
+        @for $i from 0 through $num {
+            &:nth-child(#{$i}) {
+                transform: translate(-50%, -100%) rotate(360deg / $num * $i);
+            }
+        }
+    }
+}
+
+// 边框 绘多边型  只能纯多边型 用边框构成 有多少条边就得有多少个子元素！
+// 
+// // $num    
+// 多边型数量
+// Number  —none
+// $color  
+// 多边型颜色
+// $radius 
+// 多边形半径(内切)
+// scss
+// .divs {
+//     @include border-polygon(3);
+// }
+
+// // css
+// .dvis {
+//     position: relative;
+//     height: 80px;
+//     width: 80px;
+// }
+
+// .dvis div {
+//     /* + 1.5 to account for anti-aliasing */
+//     border-top: 32px solid #c00;
+//     border-left: 56.42558px solid transparent;
+//     border-right: 56.42558px solid transparent;
+//     position: absolute;
+//     left: 50%;
+//     top: 50%;
+//     transform-origin: 50% 100%;
+// }
+
+// .dvis div:nth-child(0) {
+//     transform: translate(-50%, -100%) rotate(0deg);
+// }
+
+// .dvis div:nth-child(1) {
+//     transform: translate(-50%, -100%) rotate(120deg);
+// }
+
+// .dvis div:nth-child(2) {
+//     transform: translate(-50%, -100%) rotate(240deg);
+// }
+
+// .dvis div:nth-child(3) {
+//     transform: translate(-50%, -100%) rotate(360deg);
+// }
+
+//html
+// <div class='divs'> <div></div> <div></div> <div></div> </div> 
+// 
+// 
+// 
+// 
+// 
+// $maxNum: 10;
+// @for $i from 1 through $maxNum {
+//     $num: $i + 2;
+//     .polygon:nth-of-type(#{$i})::after {
+//         content: "#{$num}";
+//     }
+//     .borders .polygon:nth-of-type(#{$i}) {
+//         @include border-polygon($num, #c00);
+//     }
+// }

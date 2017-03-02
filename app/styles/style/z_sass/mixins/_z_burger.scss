@@ -1,0 +1,69 @@
+@charset "UTF-8";
+@mixin burger($width: 30px, $height: 5px, $gutter: 3px, $color: #000, $border-radius: 0, $transition-duration: 0) {
+    $burger-height: $height;
+    $burger-gutter: $gutter;
+    // $burger-height: $height !global;
+    // $burger-gutter: $gutter !global;
+    position: relative;
+    margin-top: $height + $gutter;
+    margin-bottom: $height + $gutter;
+    user-select: none;
+    &,
+    &::before,
+    &::after {
+        display: block;
+        width: $width;
+        height: $height;
+        background-color: $color;
+        outline: 1px solid transparent; // 1
+        @if $border-radius !=0 {
+            border-radius: $border-radius;
+        }
+        transition-property: background-color,
+        transform;
+        transition-duration: $transition-duration;
+    }
+    &::before,
+    &::after {
+        position: absolute;
+        content: "";
+    }
+    &::before {
+        top: -($height + $gutter);
+    }
+    &::after {
+        top: $height + $gutter;
+    }
+}
+
+// 绘 三 横线！ 
+//  //SCSS
+// .burger {
+// @include burger;
+// }
+// //Output CSS
+// .burger {
+// position: relative;
+// margin-top: 8px;
+// margin-bottom: 8px;
+// user-select: none;
+// }
+// .burger, .burger::before, .burger::after {
+//  display: block;
+//  width: 30px;
+//  height: 5px;
+//  background-color: #000;
+//  outline: 1px solid transparent;
+//  transition-property: background-color, transform;
+//  transition-duration: 0.3s;
+// }
+// .burger::before, .burger::after {
+//  position: absolute;
+//  content: "";
+// }
+// .burger::before {
+//  top: -8px;
+// }
+// .burger::after {
+//  top: 8px;
+// }

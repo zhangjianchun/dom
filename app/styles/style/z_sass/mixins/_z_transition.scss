@@ -1,0 +1,65 @@
+@charset "UTF-8";
+// ##transition 简写属性，用于在一个属性中设置四个过渡属性。  
+// ##transition-property    规定应用过渡的 CSS 属性的名称。all   
+// ##transition-duration    定义过渡效果花费的时间。默认是 0。1S    
+// ##transition-timing-function 规定过渡效果的时间曲线。默认是 "ease"。
+// ##transition-delay   规定过渡效果何时开始。默认是 0。   
+@mixin transition($transition...) {
+    @if (length($transition)<1) {
+        $property: $transition-property;
+        $duration: $transition-duration;
+        $timing-function: $transition-timing-function;
+        $delay: $transition-delay;
+        -webkit-transition: $property $duration $timing-function $delay;
+        -o-transition: $property $duration $timing-function $delay;
+        transition: $property $duration $timing-function $delay;
+    }@else{
+    -webkit-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+    }
+}
+
+// scss
+// p{
+//   @include transition
+// }
+// css
+// p :hover{
+//   transition: all 1s;
+// }
+//过度
+//
+// 时间曲线 
+// 1、ease：（逐渐变慢）默认值，ease函数等同于贝塞尔曲线(0.25, 0.1, 0.25, 1.0).
+// 2、linear：（匀速），linear 函数等同于贝塞尔曲线(0.0, 0.0, 1.0, 1.0).
+// 3、ease-in：(加速)，ease-in 函数等同于贝塞尔曲线(0.42, 0, 1.0, 1.0).
+// 4、ease-out：（减速），ease-out 函数等同于贝塞尔曲线(0, 0, 0.58, 1.0).
+// 5、ease-in-out：（加速然后减速），ease-in-out 函数等同于贝塞尔曲线(0.42, 0, 0.58, 1.0)
+// 6、cubic-bezier：（该值允许你去自定义一个时间曲线）， 特定的cubic-bezier曲线。 (x1, y1, x2, y2)四个值特定于曲线上点P1和点P2。所有值需在[0, 1]区域内，否则无效。
+@mixin transition-property($transition-property...) {
+    -webkit-transition-property: $transition-property;
+    transition-property: $transition-property;
+}
+
+@mixin transition-delay($transition-delay) {
+    -webkit-transition-delay: $transition-delay;
+    transition-delay: $transition-delay;
+}
+
+@mixin transition-duration($transition-duration...) {
+    -webkit-transition-duration: $transition-duration;
+    transition-duration: $transition-duration;
+}
+
+@mixin transition-timing-function($timing-function) {
+    -webkit-transition-timing-function: $timing-function;
+    transition-timing-function: $timing-function;
+}
+
+@mixin transition-transform($transition...) {
+    -webkit-transition: -webkit-transform $transition;
+    -moz-transition: -moz-transform $transition;
+    -o-transition: -o-transform $transition;
+    transition: transform $transition;
+}

@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+@mixin hover($transition:null) {
+    @if($transition==null) {
+        @include transition;
+    }
+    &:hover,
+    &:focus,
+    {
+        @content;
+    }
+}
+@mixin hover-children($children,$transition:null) {
+
+    @if($transition==null) {
+       #{$children}{ @include transition;}
+    }
+    &:hover,
+    &:focus,
+    {
+        #{$children}{
+        @content;
+        }
+    }
+}
