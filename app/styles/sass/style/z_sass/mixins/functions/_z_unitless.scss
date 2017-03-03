@@ -1,0 +1,107 @@
+@charset "UTF-8";
+// 如果用户没有给参数值加上单位，程序会自动加入 px， 
+// pe百分比单位  1 || .1 || 0.1 =>1%; 20 || .2 || 0.2 =>20%
+@function untiless-px($a) {
+    $b: null;
+    @each $i in $a {
+        @if (type-of($i)==number) {
+            @if unitless($i) {
+                $b: append($b, 1px*$i)
+            }
+            @else {
+                $b: append($b, $i)
+            }
+        }
+        @else {
+            $b: append($b,$i)
+        }
+    }
+    @return $b;
+}
+@function px($a) {
+  @return untiless-px($a);
+}
+
+@function untiless-pe($a) {
+    $b: null;
+    @each $i in $a {
+        @if (type-of($i)==number) {
+            @if unitless($i) {
+                @if ($i>1) {
+                    $i: $i/100
+                }
+                $b: append($b, percentage($i))
+            }
+            @else {
+                $b: append($b, $i)
+            }
+        }
+        @else {
+            $b: append($b, $i)
+        }
+    }
+    @return $b;
+}
+
+@function pe($a) {
+    @return untiless-pe($a);
+}
+
+///type-of($value)：返回一个值的类型
+//unit($number)：返回一个值的单位；
+//unitless($number)：判断一个值是否带有带位
+//comparable($number-1, $number-2)：判断两个值是否可以做加、减和合并
+//str_length(string)
+//str_slice(string,start_at,end_at = nil)：返回从字符$string中第$start_at开始到$end_at结束的一个新字符串
+//unquote($string)：删除字符串中的引号；
+//quote($string)：给字符串添加引号。
+
+@function remove-unit($a) {
+    //删除单位
+    $b: null;
+    @each $i in $a {
+        @if (type-of($i)==number) {
+            @if unitless($i)==false {
+              // $length:str_length(unit($i))+1;
+              // $str_i:quote($i+'');
+              // $i:unquote(str_slice($str_i,0,-$length));
+              $b: append($b,strip-units($i));
+            }
+            @else {
+                $b: append($b, $i)
+            }
+        }
+        @else {
+            $b: append($b, $i)
+        }
+    }
+    @return $b;
+}
+
+@function add-unit($a,$unit:1px) {
+    //添加单位 
+    $b: null;
+    @if($unit=="px"){$unit:1px};
+    @if($unit=="em"){$unit:1em};
+    @if($unit=="cm"){$unit:1cm};
+    @if($unit=="mm"){$unit:1mm};
+    @if($unit=="vw"){$unit:1vw};
+    @if($unit=="rem"){$unit:1rem};
+    @if($unit=="deg"){$unit:1deg};
+    @if(unit=="s"){$unit:1s};
+    @if($unit=="ms"){$unit:1ms};
+    @each $i in $a {
+        @if (type-of($i)==number) {
+            @if unitless($i) {
+                $b: append($b,$unit* $i)
+            }
+            @else {
+                $b: append($b, $i)
+            }
+        }
+        @else {
+            $b: append($b, $i)
+        }
+    }
+    @return $b;
+}

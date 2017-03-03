@@ -1,0 +1,185 @@
+@charset "UTF-8";
+///* Internet Explorer 10 及以上支持 */
+@mixin box($pack:start, $align:start, $orient:inline-axis, $direction:normal) {
+    /* Internet Explorer 10 */
+    display: -ms-flexbox;
+    -ms-flex-pack: $pack;
+    -ms-flex-align: $align;
+    -ms-box-orient: $orient;
+    -ms-flex-direction: $direction;
+    /* Firefox */
+    display: -moz-box;
+    -moz-box-pack: $pack;
+    -moz-box-align: $align;
+    -moz-box-orient: $orient;
+    -moz-box-direction: $direction;
+    /* Safari, Chrome, and Opera */
+    display: -webkit-box;
+    -webkit-box-pack: $pack;
+    -webkit-box-align: $align;
+    -webkit-box-orient: $orient;
+    -webkit-box-direction: $direction;
+    /* W3C */
+    display: box;
+    box-pack: $pack;
+    box-align: $align;
+    box-orient: $orient;
+    box-direction: $direction;
+    /* 不兼容于 IE 9以及更早版本的浏览器 */
+}
+
+// box-pack: start|end|center|justify;
+// 值    说明
+// start    对于普通方向的boxes，左边缘的第一个子元素被放置在左侧（所有额外的空间放置后的最后一个子元素）。对于反向boxes，右边缘最后一个子元素放置在右侧（所有额外的空间放置前的第一个子元素）[默认值]
+// end  对于正常的方向的boxes，最后一个子元素的右边缘放置在右侧（所有额外的空间放置前的第一个子元素）。对于反向boxes，第一个孩子的左边缘放置在左侧（所有额外的空间放置后的最后一个子元素）
+// center   额外的空间划分均匀的两半，前一半放置第一个子元素，另一半放置最后一个子元素
+// justify  额外的空间平均分配给每个子元素
+// 
+// box-align: start|end|center|baseline|stretch;
+// 值    说明
+// start    对于正常方向的boxes，每个子元素的顶部边缘放在沿box的顶部。反向箱，每个子元素的底边放在沿box的底部[默认值]
+// end  对于正常方向的boxes，每个子元素的顶部边缘放在沿box的底部。反向箱，每个子元素的底边放在沿box的顶部
+// center   任何多余的空间被划分均匀，一半以上的子元素放在上面，剩下的子元素放在另一半
+// baseline 如果box-orient是内嵌单轴或横向，所有的子元素都置于他们的基线对齐
+// stretch  子元素拉伸以填充包含区块
+// 
+// box-orient: horizontal|vertical|inline-axis|block-axis|inherit;
+// 值    说明
+// horizontal   指定子元素在一个水平线上从左至右排列
+// vertical 从顶部向底部垂直布置子元素
+// inline-axis  子元素沿着内联坐标轴（映射到横向）[默认值]
+// block-axis   子元素沿着块坐标轴（映射到垂直）
+// inherit  box-orient 属性的值应该从父元素继承
+// 
+// box-direction: normal|reverse|inherit;
+// 值    描述
+// normal   以默认方向显示子元素。[默认值]
+// reverse  以反方向显示子元素。
+// inherit  应该从子元素继承 box-direction 属性的值
+// 
+// 
+@mixin box-flex($flex:1.0) {
+    -moz-box-flex: $flex;
+    /* Firefox */
+    -webkit-box-flex: $flex;
+    /* Safari and Chrome */
+    -ms-flex: $flex;
+    /* Internet Explorer 10 */
+    box-flex: $flex;
+}
+
+// box-flex属性指定box的子元素是否灵活或固定的大小。
+// 
+// 
+@mixin box-ordinal-group($ordinal-group:1) {
+    -ms-flex-order: $ordinal-group;
+    /* Internet Explorer 10 */
+    -moz-box-ordinal-group: $ordinal-group;
+    /* Firefox */
+    -webkit-box-ordinal-group: $ordinal-group;
+    /* Safari and Chrome */
+    box-ordinal-group: $ordinal-group;
+}
+
+// box-ordinal-group 属性指定一个box的子元素的显示顺序。
+// 具有较低值的元素显示在那些具有较高的值的元素之前。
+// 
+   $hv:(horizontal, vertical);
+    $positiontype:(relative, absolute, fixed);
+    $horizontal:(left, center, right);
+    $vertical:(top, center, bottom);
+    $left-x:(0, 50, 100);
+    $top-y:(0, 50, 100);
+    $prefix:'.z-';
+    
+ @mixin z-box($class:null, $positiontype: relative, $left-x:50, $top-y:50) {
+        #{$class} {
+            @extend %pos-#{str_slice($positiontype, 0, 1)};
+            @if($top-y < 100) {
+                @extend %top#{$top-y};
+            }
+            @if($top-y==100) {
+                @extend %bottom0;
+            }
+            @if($left-x < 100) {
+                @extend %left#{$left-x};
+            }
+            @if($left-x==100) {
+                @extend %right0;
+            }
+            @if($top-y==50 and $left-x !=$top-y) {
+                @extend %translate050;
+            }
+            @if($left-x==50 and $left-x !=$top-y) {
+                @extend %translate500;
+            }
+            @if($left-x==50 and $top-y==50) {
+                @extend %translate5050;
+            }
+        }
+    }
+    
+ 
+    @each $i in $positiontype {
+        @each $x in $left-x {
+            @each $y in $top-y {
+                $class: null;
+                $suffix: str_slice($i, 0, 1);
+                $v: nth($vertical, index($top-y, $y));
+                $h: nth($horizontal, index($left-x, $x));
+                @if ($h!=$v) {
+                    $class: #{$prefix}$h+'-'+$v+'-'+$suffix,
+                    #{$prefix}$v+'-'+$h+'-'+$suffix;
+                }
+                @else {
+                    $class: #{$prefix}$h+'-'+$suffix;
+                }
+                @include z-box($class:$class, $positiontype:$i, $left-x:$x, $top-y:$y);
+            }
+        }
+    }
+    
+    $type:(top, right, bottom, left);
+    @each $v in $type {
+        @for $i from 0 through 1 {
+            $i: $i*50;
+            %#{nth($type,index($type, $v))}#{$i} {
+                #{$v}: if($i!=0, $i*1%, $i);
+            }
+        }
+    }
+    
+    @each $i in $positiontype {
+        %pos-#{str_slice($i,0,1)} {
+            position: $i;
+        }
+    }
+    
+    @each $l in $left-x {
+        @each $t in $top-y {
+            @if ($l < 100 and $t <100 and $l+$t !=0) {
+                %translate#{$l}#{$t} {
+                    transform:translate#{unquote('(' + $l*-1%+','+ $t*-1% +')')};
+                }
+            }
+        }
+    }
+    
+    @each $h in $hv {
+        @each $p in $positiontype {
+            @if($h==horizontal) {
+                #{$prefix}center-#{str_slice($h, 0, 1) +'-'+ str_slice($p, 0, 1)},#{$prefix}#{str_slice($h, 0, 1) +'-center-'+ str_slice($p, 0, 1)} {
+                    @extend %pos-#{str_slice($p, 0, 1)};
+                    @extend %left50;
+                    @extend %translate500;
+                }
+            }
+            @else {
+                #{$prefix}center-#{str_slice($h, 0, 1) +'-'+ str_slice($p, 0, 1)},#{$prefix}#{str_slice($h, 0, 1) +'-center-'+ str_slice($p, 0, 1)} {
+                    @extend %pos-#{str_slice($p, 0, 1)};
+                    @extend %translate050;
+                    @extend %top50;
+                }
+            }
+        }
+    }

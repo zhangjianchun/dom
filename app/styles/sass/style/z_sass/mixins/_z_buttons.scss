@@ -1,0 +1,116 @@
+@charset "UTF-8";
+
+// @mixin button-size($padding-vertical, $padding-horizontal, $font-size, $line-height) {
+//     padding: $padding-vertical $padding-horizontal;
+//     font-size: $font-size;
+//     line-height: $line-height;
+// }
+@mixin button-size($padding-vertical:$z-btn-size-padding-vertical, $padding-horizontal:$z-btn-size-padding-horizontal, $font-size:$z-btn-size-font-size, $line-height:$z-btn-size-line-height, $border-radius:$z-btn-border-radius) {
+  padding: $padding-vertical $padding-horizontal;
+  font-size: $font-size;
+  line-height: $line-height;
+  border-radius: $border-radius;
+}
+// $padding-vertical   
+// 垂直方向的padding
+// $padding-horizontal 
+// 水平方向的padding
+// $font-size  
+// 字号
+// $line-height    
+// 行高
+// $border-radius
+// 圆角
+//SCSS
+// .btn{
+//     @include button-size(5px,15px,16px,1.5,null);
+// }
+// //CSS
+// .btn {
+//     padding: 5px 15px;
+//     line-height: 1.5;
+// }
+// 
+@mixin user-select($select) {
+  -webkit-user-select: $select;
+     -moz-user-select: $select;
+      -ms-user-select: $select; // IE10+
+          user-select: $select;
+}
+ @mixin button( 
+                $background:$z-btn-bg,
+                $color:set-text-color($background),
+                $border-radius:$z-btn-border-radius,
+                $border:$z-btn-border) {
+        @content;
+         /* 按钮 */
+        background: $background;
+        color: $color;
+        border-radius: $border-radius;
+        border: $z-btn-border;
+        cursor: pointer;
+        text-decoration: none;
+        text-align: center;
+        transition: all .2s ease;
+        @include button-size;
+        // &:link,
+        // &:visited,
+        &:hover,
+        &:focus,
+        &:active {
+            background: lighten($background, 10%);
+            color: lighten($color, 10%);
+        }
+        &[disabled],
+        fieldset[disabled] & {
+            &,
+            &:hover,
+            &:focus,
+            &:active {
+                background-color: $background;
+                border-color: $z-btn-border-color;
+            }
+        }
+    
+}
+
+
+@mixin button-variant($color, $background, $border) {
+  color: $color;
+  background-color: $background;
+  border-color: $border;
+
+  &:hover,
+  &:focus,
+  &.focus,
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle {
+    color: $color;
+    background-color: darken($background, 10%);
+        border-color: darken($border, 12%);
+  }
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle {
+    background-image: none;
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,¡
+    &.focus,
+    &:active,
+    &.active {
+      background-color: $background;
+          border-color: $border;
+    }
+  }
+
+  .badge {
+    color: $background;
+    background-color: $color;
+  }
+}

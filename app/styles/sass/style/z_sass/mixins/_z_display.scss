@@ -1,0 +1,26 @@
+@charset "UTF-8";
+@mixin display($display:'') {
+    @if($display==b) {
+        display: block;
+    }
+    @else if($display==n) {
+        display: none;
+    }
+    @else if($display==f) {
+        display: flex;
+    }
+    @else {
+        display: inline-block;
+        *display: inline;
+        *zoom: 1;
+    }
+}
+// p{
+//  @include display;
+// }
+
+// p {
+//   display: inline-block;
+//   *display: inline;
+//   *zoom: 1;
+// }

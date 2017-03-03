@@ -1,0 +1,16 @@
+@charset "UTF-8";
+@mixin size($width,$height:$width){
+  width: px($width);
+  height: px($height);
+}
+
+// // scss
+// .width{
+//  @include size(30px)
+  
+// }
+// // css
+// .width {
+//   width: 30px;
+//   height: 30px;
+// }

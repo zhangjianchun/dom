@@ -1,0 +1,7 @@
+@charset "UTF-8";
+@mixin padding($padding...) {
+    @if length($padding)<1 or length($padding)<4 {
+        padding: $z-padding;
+    }
+    padding: $padding;
+}

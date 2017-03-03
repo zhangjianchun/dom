@@ -1,0 +1,248 @@
+@charset "UTF-8";
+
+///* index style to*/
+
+// .z-anime {
+//     @include anime;
+// }
+
+// .z-bg-l-g {
+//     @include bg-l-g;
+// }
+
+// .z-bg-r-g {
+//     @include bg-r-g;
+// }
+
+// .z-border-radius {
+//     @include border-radius;
+// }
+
+// .z-border {
+//     @include border;
+// }
+
+// .z-box-center {
+//     @include box-center;
+// }
+
+// .z-box-shadow {
+//     @include box-shadow;
+// }
+
+// .z-btn {
+//     @include button;
+// }
+
+// .z-caret {
+//     @include caret;
+// }
+
+// .z-center-translate,
+// .z-center {
+//     @include center-translate;
+// }
+
+// .z-center-translate-h,
+// .z-center-h {
+//     @include center-translate($direction: h);
+// }
+
+// .z-center-translate-v,
+// .z-center-v {
+//     @include center-translate($direction: v);
+// }
+
+// .z-clip-polygon {
+//     @include clip-polygon;
+// }
+
+// @for $i from 3 through 12 {
+//     .z-clip-path-#{$i} {
+//         clip-path: polygons($i);
+//         /* 尖顶#{$i}边形 */
+//     }
+// }
+
+// .z-counters {
+//     @include counters {
+//         background-color: #f5f5f5;
+//     }
+//     ;
+//     @include select-range(1, 3) {
+//         background-color: #f00;
+//     }
+// }
+
+// @for $i from 1 through 8 {
+//     .z-ellipsis-#{$i} {
+//         @include ellipsis($i);
+//     }
+// }
+
+// .z-filter-blur {
+//     @include filter-blur;
+// }
+
+// .z-filter-brightness {
+//     @include filter-brightness;
+// }
+
+// .z-filter-contrast {
+//     @include filter-contrast;
+// }
+
+// .z-filter-grayscale {
+//     @include filter-grayscale;
+// }
+
+// .z-filter-huerotate {
+//     @include filter-huerotate;
+// }
+
+// .z-filter-invert {
+//     @include filter-invert;
+// }
+
+// .z-filter-opacity {
+//     @include filter-opacity;
+// }
+
+// .z-filter-saturate {
+//     @include filter-saturate;
+// }
+
+// .z-filter-sepia {
+//     @include filter-sepia;
+// }
+
+// .z-filter-shadow {
+//     @include filter-shadow;
+// }
+
+// .z-hover-f-b {
+//     @include hover {
+//         @include filter-brightness(10%);
+//     }
+//     /* 鼠标移入加黑色蒙版 */
+// }
+
+// .z-hover-f-g {
+//     @include filter-grayscale(1);
+//     @include hover {
+//         @include filter-grayscale(0);
+//     }
+//     /* 灰色 鼠标移入 彩色 */
+// }
+
+// .z-fluid-type {
+//     @include fluid-type;
+// }
+
+// .z-full-width {
+//     @include full-width;
+// }
+
+// .z-text-shadow {
+//     @include text-shadow;
+// }
+
+// .z-transform-translate {
+//     @include transform-translate;
+// }
+
+// .z-transform-translate3d {
+//     @include transform-translate3d;
+// }
+
+// .z-transform-rotate {
+//     @include transform-rotate;
+// }
+
+// .z-transform-rotate3d {
+//     @include transform-rotate3d;
+// }
+
+// .z-transform-scale {
+//     @include transform-scale;
+// }
+
+// .z-transform-scale3d {
+//     @include transform-scale3d;
+// }
+
+// .z-transform-skew {
+//     @include transform-skew;
+// }
+
+// .z-transform-skew3d {
+//     @include transform-skew3d;
+// }
+
+// .z-transition {
+//     @include transition;
+// }
+
+// .z-hover-children {
+//     overflow: hidden;
+//     @include hover-children('.translate') {
+//         @include transform-translate;
+//     }
+//     @include hover-children('.zoom,.scale') {
+//         @include transform-scale;
+//     }
+//     @include hover-children('.rotate,.deg') {
+//         @include transform-rotate;
+//     }
+//     // @include hover-children('.skew') {
+//     //     @include transform-skew;
+//     // }
+// }
+// .btn {
+//   display: inline-block;
+//   margin-bottom: 0; // For input.btn
+//   font-weight: $btn-font-weight;
+//   text-align: center;
+//   vertical-align: middle;
+//   touch-action: manipulation;
+//   cursor: pointer;
+//   background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+//   border: 1px solid transparent;
+//   white-space: nowrap;
+//   @include button-size($padding-base-vertical, $padding-base-horizontal, $font-size-base, $line-height-base, $border-radius-base);
+//   @include user-select(none);
+
+//   &,
+//   &:active,
+//   &.active {
+//     &:focus,
+//     &.focus {
+//       // @include tab-focus;
+//     }
+//   }
+
+//   &:hover,
+//   &:focus,
+//   &.focus {
+//     color: $btn-default-color;
+//     text-decoration: none;
+//   }
+
+//   &:active,
+//   &.active {
+//     outline: 0;
+//     background-image: none;
+//     @include box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+//   }
+
+//   &.disabled,
+//   &[disabled],
+//   fieldset[disabled] & {
+//     cursor: $cursor-disabled;
+//     pointer-events: none; // Future-proof disabling of clicks
+//     @include opacity(.65);
+//     @include box-shadow(none);
+//   }
+// }
+
+///* index style of*/

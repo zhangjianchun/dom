@@ -1,0 +1,29 @@
+@charset "UTF-8";
+$grid-rowumns:12;
+@mixin grid() {
+    $list-n: null;
+    $list: null;
+    @for $i from 1 through $grid-rowumns {
+        $list-n: append($list-n, ".z-row-#{$i}", "comma");
+        .z-row-#{$i}>.z-col-xs-n {
+            width: percentage((1/$i));
+        }
+    }
+    @for $i from 1 through $grid-rowumns {
+        $list: append($list, ".z-col-xs-#{$i}", "comma");
+        .z-col-xs-#{$i} {
+            width: percentage(($i / $grid-rowumns));
+        }
+    }
+    #{$list},
+    .z-col-xs-n {
+        
+        float: left;
+    }
+    .z-row,
+    #{$list-n} {
+        @include clearfix
+    }
+}
+
+@include grid;

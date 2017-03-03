@@ -1,0 +1,45 @@
+@charset "UTF-8";
+@mixin box-shadow($shadows...) {
+    @content;
+    /* 阴影 */
+    @if length($shadows) >=1 {
+        box-shadow: $shadows;
+    }
+    @else {
+        box-shadow: $z-box-shadow;
+    }
+}
+
+// 阴影
+//  //scss
+// .box-shadow {
+//     @include box-shadow(0 0 1px rgba(#000, .5), 0 0 2px rgba(#000, .2));
+// }
+// //css
+// .box {
+// box-shadow:shadow(1,1,0,#600);
+//     box-shadow: 0 0 1px rgba(0, 0, 0, 0.5), 0 0 2px rgba(0, 0, 0, 0.2);
+// }
+@function shadow ($l-r:1, $t-b:1, $blur:0, $color:#000, $size:5, $color-size:60) {
+    /* 立体阴影 */
+    $a: null;
+    @for $i from 1 through $size {
+        @if(lightness($color) > 50) {
+            $a:append($a, #{$i*$l-r}px #{$i*$t-b}px #{$i*$blur}px darken($color, $i * ($color-size/$size)), "comma")
+        }
+        @else {
+            $a:append($a, #{$i*$l-r}px #{$i*$t-b}px #{$i*$blur}px lighten($color, $i * ($color-size/$size)), "comma")
+        }
+    }
+    @return $a;
+}
+
+// //scss
+// .shadow {
+//     box-shadow: shadow();
+// }
+
+// //css
+// .shadow {
+//     box-shadow: 1px 1px 0px #1f1f1f, 2px 2px 0px #3d3d3d, 3px 3px 0px #5c5c5c, 4px 4px 0px #7a7a7a, 5px 5px 0px #999999;
+// }

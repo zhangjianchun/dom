@@ -1,0 +1,57 @@
+    @charset "UTF-8";
+@mixin ellipsis($lines: 1, $substract: 0) {
+    /* 控制文字#{$lines}行溢出点点点 */
+    @if $lines==1 {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 100% - $substract;
+        overflow: hidden;
+    }
+    @else {
+        overflow: hidden;
+        display: box;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -moz-box;
+
+        line-clamp: $lines;
+        -webkit-line-clamp: $lines;
+        -ms-line-clamp: $lines;
+        -moz-line-clamp: $lines;
+
+        box-orient: vertical;
+        -webkit-box-orient: vertical;
+        -ms-box-orient: vertical;
+        -moz-box-orient: vertical;
+        
+    }
+}
+    // 控制文字行数溢出点点点
+    // //SCSS
+    // div {
+    //   // 不传参单行
+    //  @include ellipsis;
+    // }
+    // .box {
+    //   // 传参n行
+    //  @include ellipsis(3);
+    // }
+    // //CSS
+    // div {
+    //   overflow: hidden;
+    //   display: -webkit-box;
+    //   display: box;
+    //   -webkit-line-clamp: 1;
+    //   line-clamp: 1;
+    //   -webkit-box-orient: vertical;
+    //   box-orient: vertical;
+    // }
+    // .box {
+    //   overflow: hidden;
+    //   display: -webkit-box;
+    //   display: box;
+    //   -webkit-line-clamp: 3;
+    //   line-clamp: 3;
+    //   -webkit-box-orient: vertical;
+    //   box-orient: vertical;
+    // }

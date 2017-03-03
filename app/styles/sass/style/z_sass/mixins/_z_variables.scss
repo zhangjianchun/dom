@@ -1,0 +1,138 @@
+@charset "UTF-8" ;
+$z-body-min-width: null !default;
+// 后面插入内容
+$z-after: '' !default;
+// animation 动画
+$z-name: unique-id() !default;
+// 动画名 
+$z-duration: 1 !default;
+//n动画完成一个周期所花费的秒或毫秒。默认是 0
+$z-waitTime: null !default;
+//n规定动画何时开始。默认是 0
+$z-keyframes:( 0:(background: #fff), 
+			   14.2857142857:(background: #ff0),
+			   28.5714285714:(background: #f00),
+			   42.857142857:(background: #0ff),
+			   57.14285714:(background: #0f0),
+			   71.42857142857:(background: #f0f),
+			   85.7142857:(background: #00f),
+			   100:(background: #000)) !default;
+$z-timingFunction:null !default;
+//规定动画的速度曲线。
+//默认是 "ease"动画以低速开始，然后加快，在结束前变慢 ;
+//linear => 云速 ;
+//ease-in => 动画以低速开始 ;
+//ease-out => 动画以低速结束 ;
+//ease-in-out => 动画以低速开始和结束 ;
+//cubic-bezier(n,n,n,n) => 在 cubic-bezier 函数中自己的值。可能的值是从 0 到 1 的数值。1快，0慢
+$z-iterationCount: null !default;
+//规定动画被播放的次数。 默认是 1 ;
+//infinite => 规定动画应该无限次播放 ;
+$z-animation-direction:null !default;
+//规定动画是否在下一周期逆向地播放 ;
+//normal =>  ;默认是 动画应该正常播放 ;
+//alternate => 动画应该轮流反向播放 ;
+$z-animation-fill-mode:null !default;
+//规定对象动画(前后)时间之外的状态。
+//none => 不改变默认行为。
+//forward => s当动画完成后，保持最后一个属性值（在最后一个关键帧中定义）。
+//backwards => 在 animation-delay 所指定的一段时间内，在动画显示之前，应用开始属性值（在第一个关键帧中定义）。
+//both => 向前和向后填充模式都被应用
+// 线性渐变
+$z-bg-l-deg:0deg !default;
+$z-bg-l-color:(#000, #fff) !default;
+// 径向渐变
+$z-bg-r-shape:circle !default;
+$z-bg-r-size:farthest-corner !default;
+$z-bg-r-position:center !default;
+$z-bg-r-color:$z-bg-l-color !default;
+//背景
+$z-bg-color:null !default;
+$z-bg-image:null !default;
+$z-bg-repeat:null !default;
+$z-bg-attachment:null !default;
+$z-bg-position:null !default;
+// 圆角
+$z-border-radius: 3px !default;
+//边框
+$z-border:1px solid #ccc !default;
+// 阴影
+// $z-box-shadow: 0 0 6px 3px rgba(#000, .8) inset !default;
+$z-box-shadow: 0 0 6px 3px rgba(#000, .8) !default;
+$z-text-shadow:$z-box-shadow !default;
+// 按钮
+$z-btn-bg: #f0f !default;
+$z-btn-color:set-text-color($z-btn-bg) !default;
+$z-btn-border-color: #000 !default;
+$z-btn-border-radius: 3px !default;
+$z-btn-border:1px solid $z-btn-border-color !default;
+$z-btn-size-padding-vertical:6px !default;
+$z-btn-size-padding-horizontal:12px !default;
+$z-btn-size-font-size:14px !default;
+$z-btn-size-line-height:1.428571429 !default;
+// 三角形
+$z-caret-width:10px !default;
+$z-caret-bg-color:#000 !default;
+$z-caret-direction:top !default;
+$z-caret-border-color:#000 !default;
+$z-caret-position:relative !default;
+//多边形
+$z-clip-polygon-num:8 !default;//边数
+$z-clip-polygon-radius:64px !default;//直径
+$z-clip-polygon-bg-color:#f00 !default;
+//计数器<排行榜>
+$z-counters-to:'body' !default; //需要开始计数的地方
+$z-counters-start:1 !default; //开始值
+$z-counters-increasing:1 !default; //递增值
+$z-counters-section:null !default; //内容
+//滤镜
+$z-filter-blur:2 !default; // blur模糊
+$z-filter-brightness:20 !default; // brightness亮度
+$z-filter-contrast:200 !default; // contrast对比度
+$z-filter-grayscale:100% !default; // grayscale灰度
+$z-filter-huerotate:90 !default; // hue-rotate色相旋转
+$z-filter-invert:12% !default; // invert反色
+$z-filter-opacity:.5 !default; // opacity透明度
+$z-filter-saturate:2 !default; // saturate饱和度
+$z-filter-sepia:100 !default; // sepia褐色
+$z-filter-shadow:$z-box-shadow !default; // drop-shadow阴影
+// 精准过度
+$z-fluid-type-properties:font-size !default;
+$z-fluid-type-min-vw:400px !default;
+$z-fluid-type-max-vw:800px !default;
+$z-fluid-type-min-value:12px !default;
+$z-fluid-type-max-value:30px !default;
+// $z-fluid-type-2-unit:px !default;
+// 在限宽的容器中全屏效果
+$z-full-width-support-type:position !default;
+$z-full-width-min-width:$z-body-min-width !default;
+//透明度
+$z-opactiy:0.5 !default;
+//边距
+$z-padding:0 !default;
+$z-margin:0 !default;
+// 2d 3d
+$z-transform-translate-x:100% !default;
+$z-transform-translate-y:100% !default;
+$z-transform-translate3d-x:100% !default;
+$z-transform-translate3d-y:100% !default;
+$z-transform-translate3d-z:100% !default;
+$z-transform-rotate-deg:180deg !default;
+$z-transform-rotate3d-x-deg:180deg !default;
+$z-transform-rotate3d-y-deg:180deg !default;
+$z-transform-rotate3d-z-deg:180deg !default;
+$z-transform-scale-x:1.2 !default;
+$z-transform-scale-y:$z-transform-scale-x !default;
+$z-transform-scale3d-x:null !default;
+$z-transform-scale3d-y:$z-transform-scale3d-x !default;
+$z-transform-scale3d-z:$z-transform-scale3d-y !default;
+$z-transform-skew-x-deg:90deg !default;
+$z-transform-skew-y-deg:0deg !default;
+$z-transform-skew3d-x-deg:30deg !default;
+$z-transform-skew3d-y-deg:30deg !default;
+$z-transform-skew3d-z-deg:30deg !default;
+// 过度
+$transition-property:all !default;
+$transition-duration:1s !default;
+$transition-timing-function:ease-in !default;
+$transition-delay:0.1s !default;

@@ -1,0 +1,29 @@
+@charset "UTF-8";
+@mixin border-radius($size...) {
+	@content;
+	   /* 圆角 */
+   @if (length($size)>=1 and $size!=null){
+        border-radius: px($size);
+    }
+    @else {
+        border-radius:px($z-border-radius);
+    }
+}
+
+//圆角
+@mixin border-radius-top($radius) {
+  border-top-right-radius: $radius;
+   border-top-left-radius: $radius;
+}
+@mixin border-radius-right($radius) {
+  border-bottom-right-radius: $radius;
+     border-top-right-radius: $radius;
+}
+@mixin border-radius-bottom($radius) {
+  border-bottom-right-radius: $radius;
+   border-bottom-left-radius: $radius;
+}
+@mixin border-radius-left($radius) {
+  border-bottom-left-radius: $radius;
+     border-top-left-radius: $radius;
+}
