@@ -1,0 +1,24 @@
+@charset "UTF-8";
+@mixin bg-l-g($deg:$z-bg-l-deg, $color:$z-bg-l-color) {
+	@content;
+    background-image: repeating-linear-gradient($deg, $color);
+     /* 线性渐变 #{$deg} #{$color}*/
+}
+
+
+// 线性渐变
+// linear-gradient([[<angle> | to <side-or-corner> ],]?<color-stop>[,<color-stop>]+)
+// 第一个参数指定了渐变的方向
+//“0deg”0度表示渐变方向从下向上，“90deg”90度表示渐变方向从左向右。
+//“top left”左上角到右下角，“top right”左上角到右下角。
+//第二个和第三个参数，表示颜色的起始点和结束点。大家可以在从中插入更多的颜色值。
+//
+// // scss
+// .background-linear {
+//     @include background-linear($color: (#fff, #000))
+// }
+// //css
+// .background-linear {
+//     background-image: repeating-linear-gradient(0deg, #fff, #000);
+// }
+

@@ -1,0 +1,40 @@
+@charset "UTF-8";
+@mixin bg-r-g($shape:$z-bg-r-shape, $size:$z-bg-r-size, $position:$z-bg-r-position, $color:$z-bg-r-color) {
+	@content;
+    background-image: repeating-radial-gradient($shape $size at $position, $color);
+    /* 径向渐变 */
+}
+
+// 渐变
+//
+// 径向渐变
+//  radial-gradient([[<shape> || <size>] [at <position>]?,| at <position>,]?<color-stop>[,<color-stop>]+);	
+//  radial-gradient(形状结束形状大小 at 径向渐变的圆心位置   颜色 色标结束的位置，开始 ， 颜色 色标结束的位置，结束);
+// $shape 形状：
+// <length>：用长度值指定径向渐变形状的横x宽 纵y高
+// circle    =>圆形 默认
+// ellipse    =>椭圆形
+// $size 结束形状大小:    
+// closest-side：指定径向渐变的半径长度为从圆心到离圆心最近的边；
+// closest-corner：指定径向渐变的半径长度为从圆心到离圆心最近的角；
+// farthest-side：指定径向渐变的半径长度为从圆心到离圆心最远的边；
+// farthest-corner：指定径向渐变的半径长度为从圆心到离圆心最远的角；默认
+// $position 径向渐变的圆心位置
+// <length>：用长度值指定径向渐变圆心的横坐标或纵坐标。可以为负值。
+// <percentage>：用百分比指定径向渐变圆心的横坐标或纵坐标。可以为负值。
+// left：设置左边为径向渐变圆心的横坐标值。
+// center：设置中间为径向渐变圆心的横坐标值或纵坐标。默认
+// right：设置右边为径向渐变圆心的横坐标值。
+// top：设置顶部为径向渐变圆心的纵标值。
+// bottom：设置底部为径向渐变圆心的纵标值。
+// 
+// 
+// // scss
+// .background-radial {
+//     @include background-radial($color: (#fff, #000))
+// }
+
+// //css
+// .background-radial {
+//     background-image: repeating-radial-gradient(ellipse farthest-corner at center, #fff, #000);
+// }

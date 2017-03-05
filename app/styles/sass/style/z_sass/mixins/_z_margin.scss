@@ -1,0 +1,7 @@
+@charset "UTF-8";
+@mixin margin($margin...) {
+    @if length($margin)<1 or length($margin)<4 {
+        margin: $z-margin;
+    }
+    margin: $margin;
+}

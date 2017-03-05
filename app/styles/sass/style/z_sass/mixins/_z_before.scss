@@ -1,0 +1,22 @@
+@charset "UTF-8";
+@mixin before($a) {
+    &:before {
+        content: "#{$a}";
+        @content;
+    }
+}
+// 前面插入内容
+// // scss
+// li {
+//     @include before(a0);
+//     &:before {
+//         color: #f00;
+//     }
+// }
+// // css
+// li:before {
+//   content: "a0";
+// }
+// li:before {
+//   color: #f00;
+// }

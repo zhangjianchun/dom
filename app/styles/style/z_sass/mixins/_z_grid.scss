@@ -1,45 +1,114 @@
 @charset "UTF-8";
-
 $prefix:".";
-$map:(xs:all, sm:768px, md:992px, lg:1200px);
-@mixin grid($grid-rowumns:2) {
+$grid-map:(xs:all, sm:768px, md:992px, lg:1200px);
+// 纯属 row-*-*
+// @mixin grid($grid-rowumns:12) {
+//     $list: null;
+//     @each $k,
+//     $v in $grid-map {
+//         @if (type-of($v)!=number) {
+//             $float: null;
+//             @for $i from 1 through $grid-rowumns {
+//                 $list: append($list, "#{$prefix}row-#{$k}-#{$i}", "comma");
+//                 $float: append($float, "#{$prefix}row-#{$k}-#{$i}>#{$prefix}col-n", "comma");
+//                 #{$prefix}row-xs-#{$i}>#{$prefix}col-n {
+//                     width: percentage((1/$i));
+//                 }
+//             }
+//             #{$float} {
+//                 float: left;
+//             }
+//         }
+//         @else {
+//             @media (min-width: $v) {
+//                 $float: null;
+//                 @for $i from 1 through $grid-rowumns {
+//                     $list: append($list, "#{$prefix}row-#{$k}-#{$i}", "comma");
+//                     $float: append($float, "#{$prefix}row-#{$k}-#{$i}>#{$prefix}col-n", "comma");
+//                     #{$prefix}row-#{$k}-#{$i}>#{$prefix}col-n {
+//                         width: percentage((1/$i));
+//                     }
+//                 }
+//                 #{$float} {
+//                     float: left;
+//                 }
+//             }
+//         }
+//     }
+//     #{$prefix}col-n {
+//         box-sizing: border-box;
+//         -moz-box-sizing: border-box;
+//         -webkit-box-sizing: border-box;
+//     }
+//     #{$list} {
+//         @include clearfix
+//     }
+// }
 
+
+
+
+// .row-*-* 与 .col-*-*
+
+
+@mixin grid($grid-rowumns:12) {
     $list: null;
+    $list-n: null;
     @each $k,
-    $v in $map {
+    $v in $grid-map {
         @if (type-of($v)!=number) {
+            $float: null;
+            $float-n: null;
             @for $i from 1 through $grid-rowumns {
-                $list: append($list, "#{$prefix}row-#{$k}-#{$i}", "comma");
+                $list: append($list, "#{$prefix}col-#{$k}-#{$i}", "comma");
+                $list-n: append($list-n, "#{$prefix}row-#{$k}-#{$i}", "comma");
+                $float: append($float, "#{$prefix}col-#{$k}-#{$i}", "comma");
+                $float-n: append($float-n, "#{$prefix}row-#{$k}-#{$i}>#{$prefix}col-n", "comma");
+                #{$prefix}col-#{$k}-#{$i} {
+                    width: percentage(($i/$grid-rowumns));
+                }
                 #{$prefix}row-xs-#{$i}>#{$prefix}col-n {
                     width: percentage((1/$i));
                 }
-                #{$prefix}row-#{$k}-#{$i}>#{$prefix}col-n {
-                    float: left;
-                }
+            }
+            #{$float},
+            #{$float-n} {
+                float: left;
             }
         }
         @else {
             @media (min-width: $v) {
+                $float: null;
+                $float-n: null;
                 @for $i from 1 through $grid-rowumns {
-                    $list: append($list, "#{$prefix}row-#{$k}-#{$i}", "comma");
+                    $list: append($list, "#{$prefix}col-#{$k}-#{$i}", "comma");
+                    $list-n: append($list-n, "#{$prefix}row-#{$k}-#{$i}", "comma");
+                    $float: append($float, "#{$prefix}col-#{$k}-#{$i}", "comma");
+                    $float-n: append($float-n, "#{$prefix}row-#{$k}-#{$i}>#{$prefix}col-n", "comma");
+                    #{$prefix}col-#{$k}-#{$i} {
+                        width: percentage(($i/$grid-rowumns));
+                    }
                     #{$prefix}row-#{$k}-#{$i}>#{$prefix}col-n {
                         width: percentage((1/$i));
                     }
-                    #{$prefix}row-#{$k}-#{$i}>#{$prefix}col-n {
-                        float: left;
-                    }
+                }
+                #{$float},
+                #{$float-n} {
+                    float: left;
                 }
             }
         }
     }
-    #{$prefix}col-n {
+    #{$prefix}col-n,
+    #{$list} {
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
     }
-    #{$list} {
+    #{$list-n},
+    #{$prefix}row {
         @include clearfix
     }
 }
 
-@include grid(12);
+

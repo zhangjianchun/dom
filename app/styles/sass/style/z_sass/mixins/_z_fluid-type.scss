@@ -1,0 +1,91 @@
+@charset "UTF-8";
+// @mixin fluid-type-2($properties:$z-fluid-type-properties,
+// 				  $min-vw:$z-fluid-type-min-vw,
+// 				  $max-vw:$z-fluid-type-max-vw,
+// 				  $min-value:$z-fluid-type-min-value,
+// 				  $max-value:$z-fluid-type-max-value,
+// 				  $unit:$z-fluid-type-2-unit) { 
+// 	& {
+// 		@each $property in $properties {
+// 			#{$property}: $min-value+$unit;
+// 		}
+
+// 		@media (min-width: $min-vw+$unit) and (max-width:$max-vw+$unit) {
+// 			@each $property in $properties {
+// 				#{$property}: calc(#{$min-value+$unit} + ( #{$max-value} - #{$min-value}) * ( ( #{100vw} - #{$min-vw}#{$unit} ) / ( #{$max-vw} - #{$min-vw}) ));
+// 			}
+// 		}
+
+// 		@media (min-width: $max-vw+$unit) {
+// 			@each $property in $properties {
+// 				#{$property}: $max-value+$unit;
+// 			}
+// 		}
+// 	}
+//  }
+ @mixin fluid-type($properties:$z-fluid-type-properties,
+ 					$min-vw:$z-fluid-type-min-vw,
+ 					$max-vw:$z-fluid-type-max-vw,
+ 					$min-value:$z-fluid-type-min-value,
+ 					$max-value:$z-fluid-type-max-value) { 
+	 /* 过度 #{$properties}从一个#{$min-vw}小宽度到#{$max-vw}大宽度之间#{$properties}最小#{$min-value} 过度到最大 #{$max-value}*/
+	& {
+		@each $property in $properties {
+			#{$property}: $min-value;
+		}
+
+		@media screen and (min-width: $min-vw) {
+			@each $property in $properties {
+				#{$property}: calc(#{$min-value} + #{strip-units($max-value - $min-value)} * ((100vw - #{$min-vw}) / #{strip-units($max-vw - $min-vw)}));
+			}
+		}
+
+		@media screen and (min-width: $max-vw) {
+			@each $property in $properties {
+				#{$property}: $max-value;
+			}
+		}
+	}
+ }
+// 精准过度
+// $min_width: 400px;
+// $max_width: 800px;
+// $min_font: 12rem;
+// $max_font: 24rem; 
+//  :root{
+// @include fluid-type(font-size, $min_width, $max_width, $min_font, $max_font);
+// }
+// 过度 从一个小宽度到大宽度之间 过度 过度值 最小到最大
+// $properties	
+// CSS属性
+
+// String	—none
+// $min-vw	
+// 视窗最小宽度(viewport min-width)
+
+// String	—none
+// $max-vw	
+// 视窗最大宽度(viewport max-width)
+
+// String	—none
+// $min-value	
+// 最小值
+
+// String	—none
+// $max-value	
+// 最大值
+
+// 
+// :root {
+//   font-size: 12px;
+// }
+// @media (min-width: 400px) and (max-width: 800px) {
+//   :root {
+//     font-size: calc(12px + ( 24 - 12) * ( ( 100vw - 400px ) / ( 800 - 400) ));
+//   }
+// }
+// @media (min-width: 800px) {
+//   :root {
+//     font-size: 24px;
+//   }
+// }

@@ -1,0 +1,16 @@
+@charset "UTF-8";
+@function set-text-color($background) {
+    //背景色的亮底 大于 50（比较白） 是 返回黑色 否则返回白色
+    @if (type-of($background)==color) {
+        @if(lightness($background) > 50) {
+            @return #000;
+        }
+        @else {
+            @return #fff;
+        }
+    }
+    @else {
+        @return #000;
+    }
+}
+

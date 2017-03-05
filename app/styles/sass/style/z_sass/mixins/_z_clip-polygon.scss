@@ -1,0 +1,84 @@
+@charset "UTF-8";
+@mixin clip-polygon($num:$z-clip-polygon-num, $radius:$z-clip-polygon-radius, $bg-color:$z-clip-polygon-bg-color) {
+  /* 平顶多边形 */
+  @content;
+  width: px($radius*2);
+  height: px($radius*2);
+  background: $bg-color;
+  $points: ();
+  @for $i from 0 to $num {
+    $angle: 360deg/2/$num + 360deg / $num * $i;
+    $pointX: 50% + sin($angle) * 50%;
+    $pointY: 50% + cos($angle)*50%;
+    //列表中列表项的分隔符号是'space'空格,'comma '逗号;返回列表分隔类型list-separator(1,2,3) => comma
+    $points: append($points, unquote($pointX+" "+$pointY), "comma");
+  }
+  clip-path: polygon(#{$points});
+}
+
+
+//  使用 clip 制作多边形 A 可用与图像剪切
+
+
+// $num    
+// 多边形数量
+
+
+// $bg-color  
+// 多边形颜色
+
+// $radius 
+// 多边形半径
+// //scss
+// .div{
+//      @include clip-polygon(6,120px);
+// }
+// //css
+// .div {
+//   position: relative;
+//   width: 240px;
+//   height: 240px;
+//   background: #c00;
+//   clip-path: polygon(75% 93.30127%, 100% 50%, 75% 6.69873%, 25% 6.69873%, 0% 50%, 25% 93.30127%);
+// }
+// 
+// 
+//  使用 clip 制作多边形 B 可用与图像剪切
+//  与上面的顶点不同
+//  函数式
+@function polygons
+($points, $startPoint: 0) {
+    $angle: (360deg / $points);
+    $coords: '';
+    @for $point from $startPoint through ($points + $startPoint - 1) {
+        $pointAngle: $angle * $point;
+        $x: 50% + (percentage(sin($pointAngle)) / 2);
+        $y: 50% - (percentage(cos($pointAngle)) / 2);
+        $coords: $coords + $x + ' ' + $y;
+        @if $point != $points + $startPoint - 1 {
+            $coords: $coords + ', ';
+        }
+        $point: $point + 1;
+    }
+    $polygon: 'polygon(' + $coords + ')';
+    @return unquote($polygon);
+}
+
+
+
+// $points    
+// 多边形数量
+
+
+// $startPoint: 0 
+//  开始点，其默认值为0 图型一样的！
+
+// 
+// // scss
+// .div{
+//     clip-path: polygons(4);
+// }
+// // css
+// .div {
+//   clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+// }

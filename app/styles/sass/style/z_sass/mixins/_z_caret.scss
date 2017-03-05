@@ -1,0 +1,132 @@
+@charset "UTF-8";
+@mixin caret($caret-width:$z-caret-width,
+             $background-color:$z-caret-bg-color,
+             $direction:$z-caret-direction,
+             $border-width:0px,
+             $border-color:$z-caret-border-color,
+             $position:$z-caret-position) {
+       @content;
+   /* 三角形 */
+    @if($position=='a' or $position=='A' or $position=='absolute') {
+        $position: absolute;
+    }
+    @else if($position=='r' or $position=='R' or $position=='relative') {
+        $position: relative;
+    }
+    @else if($position=='f' or $position=='F' or $position=='fixed') {
+        $position: fixed;
+    }
+    @else if($position=='') {
+        $position: relative;
+    }
+    position: $position;
+    &:before,
+    &:after {
+        content: "";
+        position: absolute;
+    }
+    @if $direction==top {
+        &:before {
+            top: 0;
+            left: 0;
+            border-bottom: px($caret-width) solid $border-color;
+            border-left: px($caret-width) solid transparent;
+            border-right: px($caret-width) solid transparent;
+        }
+        &:after {
+            left: $border-width;
+            top: $border-width;
+            border-bottom: px($caret-width - $border-width) solid $background-color;
+            border-left: px($caret-width - $border-width) solid transparent;
+            border-right: px($caret-width - $border-width) solid transparent;
+        }
+    }
+    @else if $direction==right {
+        &:before {
+            top: 0;
+            left: 0;
+            border-left: px($caret-width) solid $border-color;
+            border-top: px($caret-width) solid transparent;
+            border-bottom: px($caret-width) solid transparent;
+        }
+        &:after {
+            left: 0;
+            top: $border-width;
+            border-left: px($caret-width - $border-width) solid $background-color;
+            border-top: px($caret-width - $border-width) solid transparent;
+            border-bottom: px($caret-width - $border-width) solid transparent;
+        }
+    }
+    @else if $direction==bottom {
+        &:before {
+            top: 0;
+            left: 0;
+            border-top: px($caret-width) solid $border-color;
+            border-left: px($caret-width) solid transparent;
+            border-right: px($caret-width) solid transparent;
+        }
+        &:after {
+            left: $border-width;
+            top: 0;
+            border-top: px($caret-width - $border-width) solid $background-color;
+            border-left: px($caret-width - $border-width) solid transparent;
+            border-right: px($caret-width - $border-width) solid transparent;
+        }
+    }
+    @else if $direction==left {
+        &:before {
+            top: 0;
+            left: 0;
+            border-right: px($caret-width) solid $border-color;
+            border-top: px($caret-width) solid transparent;
+            border-bottom: px($caret-width) solid transparent;
+        }
+        &:after {
+            left: $border-width;
+            top: $border-width;
+            border-right: px($caret-width - $border-width) solid $background-color;
+            border-top: px($caret-width - $border-width) solid transparent;
+            border-bottom: px($caret-width - $border-width) solid transparent;
+        }
+    }
+}
+
+
+
+// 三角形
+// $caret-width  
+// 三角形外宽度
+// $border-width 
+// 三角形内宽度
+// $direction  
+// 三角形方向
+// $border-color 
+// 边框颜色
+// $background-color 
+// 背景颜色
+// //SCSS
+// .divs{
+//   @include caret(50px);
+// }
+// //css
+// .divs {
+//   position: relative;
+// }
+// .divs:before, .divs:after {
+//   content: "";
+//   position: absolute;
+// }
+// .divs:before {
+//   top: 0;
+//   left: 0;
+//   border-left: 50px solid transparent;
+//   border-top: 50px solid transparent;
+//   border-bottom: 50px solid transparent;
+// }
+// .divs:after {
+//   left: 0;
+//   top: 0px;
+//   border-left: 50px solid #000;
+//   border-top: 50px solid transparent;
+//   border-bottom: 50px solid transparent;
+// }
