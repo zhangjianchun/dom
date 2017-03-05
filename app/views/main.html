@@ -1,9 +1,24 @@
 <div class="hero-unit">
-  <h1>'Allo, 'Allo!</h1>
-  <p>You now have</p>
-  <ul>
-      <li ng-repeat="thing in awesomeThings">{{thing}}</li>
-  </ul>
-  <p>installed.</p>
-  <h3>Enjoy coding! - Yeoman</h3>
+    <h1>'Allo, 'Allo!</h1>
+    <p>You now have</p>
+    <ul>
+        <li ng-repeat="thing in awesomeThings">{{thing}}</li>
+    </ul>
+    <p>installed.</p>
+    <a href="#">get</a>
+    <code ng-repeat="i in box.array"> {{i}}</code>
+    <p ng-repeat="i in box.array"> {{i}}</p>
+    <h3>Enjoy coding! - Yeoman</h3>
+</div>
+<div>
+    <label for="username">
+        Type in a GitHub username
+    </label>
+    <input type="text" ng-model="username" placeholder="Enter a GitHub username" />
+    <ul>
+        <li ng-repeat="event in events">
+            {{ event }}
+        </li>
+    </ul>
+      <div ng-include="'views/view/collapse.html'"></div>
 </div>
