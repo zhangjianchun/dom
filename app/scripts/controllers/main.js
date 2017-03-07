@@ -10,10 +10,17 @@ angular.module('zjcApp')
         ];
 
       Zjcservice.GET('api/json').success(function(data){
-      	$scope.box=data;
+      	// $scope.box=data;
       })
+       Zjcservice.GET('a/carousels').success(function(data){
+       	console.log(data)
+      	$scope.carousels=data.carousels;
+      })
+     
+  
  
          Zjcservice.JSONP('.cn').success(function(data) {
+      	// $scope.carousels=$scope.box.carousels;
             $scope.events =data
         });
         
